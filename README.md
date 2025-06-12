@@ -1,6 +1,6 @@
 # Liquid Glass
 
-A stunning CSS-only implementation of liquid glass effects using modern glassmorphism techniques and fluid animations.
+A stunning CSS-only implementation of liquid glass effects using modern glassmorphism techniques
 
 # Screenshot
 
