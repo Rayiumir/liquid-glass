@@ -1,298 +1,98 @@
 /* 
 * Name Theme: Liquid Glass
 * Author: Raymond Baghumian
-* Version: 1.0.0
- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* Version: 2.0.0
+*/
 
 body {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    overflow: hidden;
-    font-family: 'Arial', sans-serif;
-    position: relative;
-}
-
-/* Animated background blobs */
-.bg-blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(70px);
-    animation: float 20s infinite ease-in-out;
-    opacity: 0.7;
-}
-
-.blob1 {
-    width: 300px;
-    height: 300px;
-    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-    top: 10%;
-    left: 10%;
-    animation-delay: 0s;
-}
-
-.blob2 {
-    width: 250px;
-    height: 250px;
-    background: linear-gradient(45deg, #a8edea, #fed6e3);
-    top: 60%;
-    right: 20%;
-    animation-delay: -7s;
-}
-
-.blob3 {
-    width: 200px;
-    height: 200px;
-    background: linear-gradient(45deg, #ffecd2, #fcb69f);
-    bottom: 20%;
-    left: 60%;
-    animation-delay: -14s;
-}
-
-@keyframes float {
-
-    0%,
-    100% {
-        transform: translate(0, 0) rotate(0deg) scale(1);
-    }
-
-    25% {
-        transform: translate(30px, -50px) rotate(90deg) scale(1.1);
-    }
-
-    50% {
-        transform: translate(-20px, 20px) rotate(180deg) scale(0.9);
-    }
-
-    75% {
-        transform: translate(-50px, -30px) rotate(270deg) scale(1.05);
-    }
-}
-
-/* Main container */
-.container {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    font-family: sans-serif;
+    background: url(./img/chrysanthemum.jpg) center center;
+    background-size: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-    position: relative;
-    z-index: 10;
+    justify-content: center;
 }
 
-/* Glass card */
+.container {
+    position: relative;
+    z-index: 1;
+}
+
 .glass-card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 40px;
-    width: 400px;
-    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
     position: relative;
+    width: 340px;
+    padding: 2rem;
+    border-radius: 20px;
+    isolation: isolate;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0px 6px 24px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    text-align: center;
+    z-index: 0;
     overflow: hidden;
-    transition: all 0.3s ease;
 }
 
-.glass-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 35px 60px rgba(0, 0, 0, 0.15);
-    border-color: rgba(255, 255, 255, 0.3);
-}
-
-/* Liquid effect overlay */
 .glass-card::before {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg,
-            rgba(255, 255, 255, 0.1) 0%,
-            transparent 25%,
-            transparent 50%,
-            rgba(255, 255, 255, 0.05) 75%,
-            transparent 100%);
-    animation: liquid-flow 8s linear infinite;
+    inset: 0;
+    z-index: 0;
     border-radius: 20px;
+    box-shadow: inset 0 0 20px -5px rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.05);
 }
 
-@keyframes liquid-flow {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-/* Content styling */
-.glass-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    color: white;
+.glass-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: 28px;
+    backdrop-filter: blur(8px);
+    filter: url(#glass-distortion);
+    isolation: isolate;
 }
 
 .glass-title {
-    font-size: 2.5rem;
-    font-weight: 300;
-    margin-bottom: 20px;
-    background: linear-gradient(135deg, #ffffff, #a8edea);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+    margin: 0;
+    font-size: 1.8rem;
+    z-index: 2;
+    position: relative;
 }
 
 .glass-subtitle {
-    font-size: 1.1rem;
-    opacity: 0.9;
-    margin-bottom: 30px;
-    line-height: 1.6;
+    font-size: 0.95rem;
+    margin: 1rem 0;
+    z-index: 2;
+    position: relative;
 }
 
-/* Interactive buttons */
 .glass-buttons {
     display: flex;
-    gap: 15px;
     justify-content: center;
+    gap: 1rem;
+    z-index: 2;
+    position: relative;
 }
 
 .glass-btn {
-    padding: 12px 24px;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
     background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
     color: white;
     text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    position: relative;
-    overflow: hidden;
-}
-
-.glass-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s;
-}
-
-.glass-btn:hover::before {
-    left: 100%;
+    font-weight: bold;
+    backdrop-filter: blur(3px);
+    transition: background 0.3s ease;
 }
 
 .glass-btn:hover {
-    background: rgba(255, 255, 255, 0.25);
-    border-color: rgba(255, 255, 255, 0.4);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-/* Floating particles */
-.particle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.6);
-    border-radius: 50%;
-    animation: particle-float 15s infinite linear;
-}
-
-.particle:nth-child(odd) {
-    animation-delay: -5s;
-    animation-duration: 12s;
-}
-
-.particle:nth-child(even) {
-    animation-delay: -10s;
-    animation-duration: 18s;
-}
-
-@keyframes particle-float {
-    0% {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 0;
-    }
-
-    10% {
-        opacity: 1;
-    }
-
-    90% {
-        opacity: 1;
-    }
-
-    100% {
-        transform: translateY(-100vh) rotate(360deg);
-        opacity: 0;
-    }
-}
-
-/* Responsive design */
-@media (max-width: 480px) {
-    .glass-card {
-        width: 90%;
-        padding: 30px 20px;
-    }
-
-    .glass-title {
-        font-size: 2rem;
-    }
-
-    .glass-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
-/* Additional glass elements */
-.glass-orb {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 50%;
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    animation: orb-float 10s ease-in-out infinite;
-}
-
-.orb1 {
-    top: 20%;
-    right: 10%;
-    animation-delay: 0s;
-}
-
-.orb2 {
-    bottom: 20%;
-    left: 5%;
-    animation-delay: -5s;
-    width: 100px;
-    height: 100px;
-}
-
-@keyframes orb-float {
-
-    0%,
-    100% {
-        transform: translateY(0px);
-    }
-
-    50% {
-        transform: translateY(-20px);
-    }
+    background: rgba(255, 255, 255, 0.3);
 }
